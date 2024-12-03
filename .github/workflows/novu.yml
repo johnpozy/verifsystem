@@ -1,0 +1,25 @@
+name: Deploy Workflow State to Novu
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/novuhq/actions-novu-sync
+      - name: Sync V2 State to Novu
+        uses: novuhq/actions-novu-sync@v2
+        with:
+          # The secret key used to authenticate with Novu Cloud
+          # To get the secret key, go to https://web.novu.co/api-keys.
+          # Required.
+          secret-key: ${{ secrets.NOVU_SECRET_KEY_V2 }}
+
+          # The publicly available endpoint hosting the bridge application
+          # where notification entities (eg. workflows, topics) are defined.
+          # Required.
+          bridge-url: ${{ secrets.NOVU_SECRET_KEY_V2 }}
